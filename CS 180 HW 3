@@ -1,0 +1,113 @@
+
+import java.util.Locale;
+import java.util.Scanner;
+
+/**
+ * HW-03 -- CreateNewUser
+ *
+ * This program takes in input from System.in
+ * performs string manipulation and returns a user String
+ *
+ * @author Srishti Shenoy, L21
+ *
+ * @version Aug 19, 2025
+ *
+ */
+
+public class CreateNewUser {
+    
+        
+    public static final String PROMPT_ONE = "Enter Customer First Name:";
+    public static final String PROMPT_TWO = "Enter Customer Last Name:";
+    public static final String PROMPT_THREE = "Enter Customer Age:";
+    public static final String PROMPT_FOUR = "Enter Customer Street Address:";
+    public static final String PROMPT_FIVE = "Enter Customer City:";
+    public static final String PROMPT_SIX = "Enter Customer State:";
+    public static final String PROMPT_SEVEN = "Enter Customer Zip Code:";
+    public static final String PROMPT_EIGHT = "Enter Customer Phone Number:";
+    public static final String OUTPUT = "The Assigned User String is ";
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+       
+        System.out.println(PROMPT_ONE);
+        String firstName = scanner.next();
+        int fl = firstName.length();
+        String fName = firstName.substring(1,2).toUpperCase() + firstName.substring(fl-2,fl-1).toUpperCase();
+        
+        
+        
+        System.out.println(PROMPT_TWO);
+        String lastName = scanner.next();
+        int ll = lastName.length();
+        String lName = lastName.substring(0,1).toUpperCase() + lastName.substring(2,3).toUpperCase();
+        String name = lName + fName; //concatenate processed first and last names. 
+       
+        System.out.println(PROMPT_THREE);
+        int age = scanner.nextInt();
+        scanner.nextLine();
+        int sum = age%10 + age/10;
+        String finalAge; 
+        finalAge = String.format("%03d", sum);
+        String ageName = finalAge + name; //concatenate processed age and names. 
+       
+
+        System.out.println(PROMPT_FOUR);
+        String address = scanner.nextLine();
+        int al = address.length(); 
+        String address1 = address.replace(" " , ""); 
+        String finalAddress = address1.toLowerCase();
+        String step4 = ageName + finalAddress; 
+        
+        
+        System.out.println(PROMPT_FIVE);
+        String city = scanner.nextLine(); 
+        int cl = city.length(); 
+        String fCity = city.substring(0,3).toUpperCase(); 
+        String step5 = step4 + fCity; 
+        
+        
+        System.out.println(PROMPT_SIX);
+        String state = scanner.next().toUpperCase();
+        int sl = state.length(); 
+        int S1 = (int) state.charAt(0); 
+        int S2 = (int) state.charAt(1); 
+        int mods1 = S1 % 6; 
+        int mods2 = S2 % 5; 
+        int promptSix = mods1 * mods2; 
+        String six = Integer.toString(promptSix);
+        String step6 = step5 + six; 
+        
+        
+        System.out.println(PROMPT_SEVEN);
+        int zip = scanner.nextInt();
+        scanner.nextLine();
+        int prod = 1; 
+        while (zip != 0) {
+            prod = prod  * (zip % 10);
+            zip = zip / 10;
+             }
+        int modzip = prod % 100; 
+        String seven = String.format("%03d", modzip );
+        String step7 = step6 + seven; 
+        
+        System.out.println(PROMPT_EIGHT);
+        String phone = scanner.next(); 
+        int pl = phone.length(); 
+        String step8 = step7 + "-" + phone.substring(pl-4); 
+        
+        int totalinputl = fl + ll + 2 + al + cl + sl + 5 + pl; 
+        System.out.println(totalinputl); //remove 
+        String nine = Integer.toString(totalinputl);
+        String step9 = nine + step8; //step 9 
+        
+        String finalresult = step9.replace( "o" , "").replace( "O" , "").replace( "i" , "").replace( "I", "") ; //step 10 
+        
+        
+        System.out.println(OUTPUT + finalresult);
+
+    } //End Main method
+
+
+} //End CreateNewUser.class
